@@ -9,10 +9,17 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
+            If ["$?" -eq "0"]
+            then
             post {
                 success {
                     echo '開始存檔...'
                     archiveArtifacts artifacts: '**/target/*.war'
+                }
+            Else
+            post {
+                Failure {
+                    echo '清除失敗'
                 }
             }
         }
@@ -23,4 +30,3 @@ pipeline {
         }
     }
 }
-
