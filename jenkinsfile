@@ -14,11 +14,11 @@ pipeline {
                     echo '開始存檔...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-            post {
                 failure {
                     echo '清除失敗'
+                }
+                 }
             }
-        }
         stage('Deploy to staging'){
             steps{
                 build job:'deploy-to-staging'
