@@ -9,14 +9,12 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-            sh 'make check || true'
-            then
             post {
                 success {
                     echo '開始存檔...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-            Else
+            regression
             post {
                 Failure {
                     echo '清除失敗'
