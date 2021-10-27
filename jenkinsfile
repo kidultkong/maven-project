@@ -9,18 +9,20 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-            if
+            if{
             post {
                 success {
                     echo '開始存檔...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-            else
+              }
+            else{
             post {
                 failure {
                     echo '清除失敗'
                 }
             }
+                 }
         }
         stage('Deploy to staging'){
             steps{
