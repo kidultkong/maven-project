@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
     tools{
@@ -9,20 +10,12 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-            if{
             post {
                 success {
                     echo '開始存檔...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-              }
-            else{
-            post {
-                failure {
-                    echo '清除失敗'
-                }
             }
-                 }
         }
         stage('Deploy to staging'){
             steps{
