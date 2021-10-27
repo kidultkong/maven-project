@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
+            sh 'make check || true'
             then
             post {
                 success {
