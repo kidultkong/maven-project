@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-            If ["$?" -eq "0"]
+            If ["\$?" -eq "0"]
             then
             post {
                 success {
